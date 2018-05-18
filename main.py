@@ -5,7 +5,8 @@ import os
 import time
 from argparse import ArgumentParser
 from datetime import datetime
-
+import matplotlib as mpl
+mpl.use('TkAgg')
 from pgportfolio.tools.configprocess import preprocess_config
 from pgportfolio.tools.configprocess import load_config
 from pgportfolio.tools.trade import save_test_data

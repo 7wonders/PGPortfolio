@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+tensorflow = ">=1.0.0"
+tflearn = ">=0.3.2"
+cvxopt = ">=1.1.9"
+seaborn = ">=0.8.1"
+pandas = ">=0.20.3"
+Pympler = ">=0.5"
+ccxt = ">=1.14.16"
+"h5py" = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.6"

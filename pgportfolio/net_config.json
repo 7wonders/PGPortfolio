@@ -23,9 +23,10 @@
     "feature_number":3,
     "test_portion":0.08,
     "online":false,
-    "start_date":"2015/07/01",
-    "end_date":"2017/07/01",
-    "volume_average_days":30
+    "start_date":"2018/01/18",
+    "end_date":"2018/05/18",
+    "volume_average_days":30,
+    "input": "binance"
   },
 
   "trading":{

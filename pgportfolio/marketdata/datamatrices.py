@@ -14,7 +14,7 @@ MIN_NUM_PERIOD = 3
 
 class DataMatrices:
     def __init__(self, start, end, period, batch_size=50, volume_average_days=30, buffer_bias_ratio=0,
-                 market="poloniex", coin_filter=1, window_size=50, feature_number=3, test_portion=0.15,
+                 coin_filter=1, window_size=50, feature_number=3, test_portion=0.15,
                  portion_reversed=False, online=False, is_permed=False):
         """
         :param start: Unix time
@@ -44,13 +44,11 @@ class DataMatrices:
         self.__history_manager = gdm.HistoryManager(coin_number=coin_filter, end=self.__end,
                                                     volume_average_days=volume_average_days,
                                                     volume_forward=volume_forward, online=online)
-        if market == "poloniex":
-            self.__global_data = self.__history_manager.get_global_panel(start,
-                                                                         self.__end,
-                                                                         period=period,
-                                                                         features=type_list)
-        else:
-            raise ValueError("market {} is not valid".format(market))
+        self.__global_data = self.__history_manager.get_global_panel(start,
+                                                                     self.__end,
+                                                                     period=period,
+                                                                     features=type_list)
+
         self.__period_length = period
         # portfolio vector memory, [time, assets]
         self.__PVM = pd.DataFrame(index=self.__global_data.minor_axis,
@@ -96,7 +94,6 @@ class DataMatrices:
         end = parse_time(input_config["end_date"])
         return DataMatrices(start=start,
                             end=end,
-                            market=input_config["market"],
                             feature_number=input_config["feature_number"],
                             window_size=input_config["window_size"],
                             online=input_config["online"],

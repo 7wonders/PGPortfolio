@@ -196,11 +196,8 @@ class HistoryManager:
         logging.info("fill %s data from %s to %s"%(coin, datetime.fromtimestamp(start).strftime('%Y-%m-%d %H:%M'),
                                             datetime.fromtimestamp(end).strftime('%Y-%m-%d %H:%M')))
         for c in chart:
-            if c["date"] > 0:
-                if c['weightedAverage'] == 0:
-                    weightedAverage = c['close']
-                else:
-                    weightedAverage = c['weightedAverage']
+            if c[0] > 0:
+                weightedAverage = c[4]
 
                 #NOTE here the USDT is in reversed order
                 if 'reversed_' in coin:
@@ -210,6 +207,6 @@ class HistoryManager:
                         1.0/weightedAverage))
                 else:
                     cursor.execute('INSERT INTO History VALUES (?,?,?,?,?,?,?,?,?)',
-                                   (c['date'],coin,c['high'],c['low'],c['open'],
-                                    c['close'],c['volume'],c['quoteVolume'],
+                                   (c[0], coin, c[2], c[3], c[1],
+                                    c[4], c[5], 0,
                                     weightedAverage))
